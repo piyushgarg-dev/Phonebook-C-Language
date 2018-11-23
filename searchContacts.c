@@ -8,6 +8,8 @@ int searchcontacts()
     char name[50]="";
     char ch[1000];
     int x;
+    char *p;
+    int total=0;
 
 
     printf("\t\t\t     ================ \n");
@@ -18,21 +20,22 @@ int searchcontacts()
     scanf("%s",name);
 
     fp=fopen("Contacts.txt","r");
-    printf("First Name \t lastname \t Contact");
+    printf("Name \t\t Contact");
     while(!feof(fp))
     {
         fgets(ch,1000,fp);
-        x=strcmp(ch,name);
-        if(x==0)
+        p=strstr(ch,name);
+        if(p)
         {
-
+            printf("\n");
             puts(ch);
+            total++;
         }
     }
     fclose(fp);
 
-
-printf("\n\n\n\n\n");
+printf("\n Total Entries --> %d",total);
+printf("\n\n\n");
 
     return 0;
 }
